@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from "../components/Button";
 
-export const Card = ({id, location, category, description, createdAt, updatedAt,image,statusData }) => {
+export const Card = ({id,email, location, category, description, createdAt, updatedAt,image,statusData }) => {
   const [status, setStatus] = useState('Update Status'); // default status
   
   console.log(status,id)
@@ -45,7 +45,8 @@ export const Card = ({id, location, category, description, createdAt, updatedAt,
       <div style={{ padding: 50, backgroundColor: "white", width: 300, background: "white", alignItems: "center", justifyContent: "center", borderRadius: "30px" }}>
         {/* <img src="public\c-6.jpg" alt="react logo" style={{ width: '400px', paddingBottom: "10px" }} /> */}
         <img src={`data:image/jpeg;base64,${image}`}  style={{ width: '400px', paddingBottom: "10px" }}/>
-        <h3>Location: {location}</h3>
+        <h3>Email: {email}</h3>
+        <p>Location: {location}</p>
         <p>Category: {category.join(", ")}</p>
         <p>Description: {description}</p>
         <p>Created At: {new Date(createdAt).toLocaleString()}</p>

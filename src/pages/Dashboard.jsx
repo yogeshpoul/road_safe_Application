@@ -39,13 +39,15 @@ export const Dashboard=()=>{
           {console.log(data)}
           {data.map((complaint, index) => (
             <div key={index}>
-              <Card id={complaint._id} location={complaint.location} 
+              <Card id={complaint._id} 
+              location={complaint.location} 
               category={complaint.category} 
               description={complaint.description}
               createdAt={complaint.createdAt}
               updatedAt={complaint.updatedAt}
               image={complaint.image}
               statusData={complaint.status}
+              email={complaint.email}
               />
             </div>
           ))}
