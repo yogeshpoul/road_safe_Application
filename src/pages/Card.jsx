@@ -11,7 +11,7 @@ export const Card = ({id,email, location, category, description, createdAt, upda
   useEffect(() => {
     const updateStatusInBackend = async () => {
       try {
-        const response = await fetch('http://localhost:3000/updateStatus', {
+        const response = await fetch('https://road-backend.vercel.app/updateStatus', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

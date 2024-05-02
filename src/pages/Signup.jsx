@@ -45,7 +45,7 @@ export const Signup = () => {
                 }} label={"password"} placeholder={"IlovePriya"} />
                 <div className="pt-4">
                     <Button onClick={async() => {
-                        const response=await axios.post("http://localhost:3000/registration", {
+                        const response=await axios.post("https://road-backend.vercel.app/registration", {
                             firstName,
                             lastName,
                             email:username,
