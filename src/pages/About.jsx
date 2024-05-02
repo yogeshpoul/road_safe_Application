@@ -1,12 +1,11 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
-import { Box, Typography } from "@mui/material";
 import Registered from "../images/Registered.png";
 import Resolved from "../images/Resolved.png";
 import Inprogress from "../images/Inprogress.png";
 import Cancelled from "../images/Cancelled.png";
 
-const Team = () => {
+export const About = () => {
   const teamMembers = [
     { src: Registered, number: '10', name: 'Registered' },
     { src: Resolved, number: '20', name: 'Resolved' },
@@ -14,69 +13,21 @@ const Team = () => {
     { src: Cancelled, number: '40', name: 'Cancelled' }
   ];
 
-  const styles = {
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      margin: '20px',
-    },
-    item: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '10px',
-    },
-    image: {
-      width: '150px',
-      borderRadius: '8px',
-    },
-    number: {
-      marginTop: '5px',
-      fontSize: '18px',
-      fontWeight: 'bold',
-    },
-    caption: {
-      marginTop: '5px',
-      fontSize: '16px',
-    },
-  };
-
   return (
     <Layout>
-      <Box
-        sx={{
-          my: 15,
-          textAlign: "center",
-          p: 2,
-          "& h4": {
-            fontWeight: "bold",
-            my: 2,
-            fontSize: "2rem",
-          },
-          "& p": {
-            textAlign: "justify",
-          },
-          "@media (max-width:600px)": {
-            mt: 0,
-            "& h4": {
-              fontSize: "1.5rem",
-            },
-          },
-        }}
-      >
-        <Typography variant="h4"></Typography>
+      <div className="my-15 text-center">
+        <h4 className="font-bold my-2 text-2xl md:text-3xl">Team Statistics</h4>
         
-        <div style={styles.container}>
+        <div className="flex justify-center flex-wrap mx-10 md:mx-20 lg:mx-40">
           {teamMembers.map((member, index) => (
-            <div key={index} style={styles.item}>
+            <div key={index} className="flex flex-col items-center m-10">
               <img 
                 src={member.src} 
                 alt={member.name} 
-                style={styles.image} 
+                className="w-40 md:w-48 rounded-lg"
               />
-              <div style={styles.number}>{member.number}</div>
-              <div style={styles.caption}>{member.name}</div>
+              <div className="text-lg font-bold mt-3">{member.number}</div>
+              <div className="text-base mt-1">{member.name}</div>
             </div>
           ))}
         </div>
@@ -85,9 +36,9 @@ const Team = () => {
         <p>
           {/* Your text content here */}
         </p>
-      </Box>
+      </div>
     </Layout>
   );
 };
 
-export default Team;
+

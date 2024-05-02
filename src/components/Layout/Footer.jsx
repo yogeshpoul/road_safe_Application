@@ -1,46 +1,23 @@
 import React from "react";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import { Box, Typography } from "@mui/material";
-export const Footer = () => {
-  return<Box
-        sx={{ textAlign: "center", bgcolor: "#FF7415", color: "white", p: 3 }}
-      >
-        <Box
-          sx={{
-            my: 3,
-            "& svg": {
-              fontSize: "60px",
-              cursor: "pointer",
-              mr: 2,
-            },
-            "& svg:hover": {
-              color: "black",
-              transform: "translateX(5px)",
-              transition: "all 400ms",
-            },
-          }}
-        >
-          {/* icons */}
-          <InstagramIcon />
-          <TwitterIcon />
-          <GitHubIcon />
-          <YouTubeIcon />
-        </Box>
-        <Typography
-          variant="h5"
-          sx={{
-            "@media (max-width:600px)": {
-              fontSize: "1rem",
-            },
-          }}
-        >
-          teamroadsafe@gmail.com
-          9876543217
-        </Typography>
-      </Box>
-}
+import { AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillYoutube } from "react-icons/ai";
 
-// export default Footer;
+export const Footer = () => {
+  return (
+    <div className="text-center bg-orange-500 text-white p-3">
+      <div className="my-3">
+        {/* icons */}
+        <AiFillInstagram className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
+        <AiFillTwitterSquare className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
+        <AiFillGithub className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
+        <AiFillYoutube className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
+      </div>
+      <p className="text-lg md:text-xl">
+        teamroadsafe@gmail.com
+        <br />
+        9876543217
+      </p>
+    </div>
+  );
+};
+
+export default Footer;

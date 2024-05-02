@@ -1,10 +1,9 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
-import { Box, Typography } from "@mui/material";
 import img1 from "../images/man.png";
 import img2 from "../images/woman.png";
 
-const Team = () => {
+export const Team = () => {
   const teamMembers = [
     { src: img1, name: 'Lucky Vishwakarma' },
     { src: img2, name: 'Amruta Pradhan' },
@@ -12,63 +11,20 @@ const Team = () => {
     { src: img1, name: 'Ashutosh Gaware' }
   ];
 
-  const styles = {
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      margin: '20px',
-    },
-    item: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '10px',
-    },
-    image: {
-      width: '150px',
-      borderRadius: '8px',
-    },
-    caption: {
-      marginTop: '5px',
-      fontSize: '16px',
-    },
-  };
-
   return (
     <Layout>
-      <Box
-        sx={{
-          my: 15,
-          textAlign: "center",
-          p: 2,
-          "& h4": {
-            fontWeight: "bold",
-            my: 2,
-            fontSize: "2rem",
-          },
-          "& p": {
-            textAlign: "justify",
-          },
-          "@media (max-width:600px)": {
-            mt: 0,
-            "& h4": {
-              fontSize: "1.5rem",
-            },
-          },
-        }}
-      >
-        <Typography variant="h4">Our Team</Typography>
+      <div className="my-15 text-center">
+        <h4 className="font-bold my-2 text-2xl md:text-3xl">Our Team</h4>
         
-        <div style={styles.container}>
+        <div className="flex justify-center flex-wrap mx-10 md:mx-20 lg:mx-40">
           {teamMembers.map((member, index) => (
-            <div key={index} style={styles.item}>
+            <div key={index} className="flex flex-col items-center m-5">
               <img 
                 src={member.src} 
                 alt={member.name} 
-                style={styles.image} 
+                className="w-40 h-40 rounded-lg"
               />
-              <div style={styles.caption}>{member.name}</div>
+              <div className="text-lg mt-3">{member.name}</div>
             </div>
           ))}
         </div>
@@ -77,9 +33,9 @@ const Team = () => {
         <p>
           {/* Your text content here */}
         </p>
-      </Box>
+      </div>
     </Layout>
   );
 };
 
-export default Team;
+// export default Team;

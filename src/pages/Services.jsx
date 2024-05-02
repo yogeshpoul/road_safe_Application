@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Layout from "./../components/Layout/Layout";
-import { Box, Typography } from "@mui/material";
 import img1 from "../images/hole1.jpg";
 import img2 from "../images/water1.jpg";
 import img3 from "../images/crack1.jpeg";
@@ -8,7 +7,7 @@ import img4 from "../images/hole2.jpg";
 import img5 from "../images/water2.jpeg";
 import img6 from "../images/crack2.jpeg";
 
-const Services = () => {
+export const Services = () => {
   const [hoveredService, setHoveredService] = useState(null);
 
   const services = [
@@ -28,116 +27,53 @@ const Services = () => {
     setHoveredService(null);
   };
 
-  const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '20px',
-    },
-    row: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    item: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '10px',
-      cursor: 'pointer',
-      position: 'relative',
-    },
-    image: {
-      width: '150px',
-      height: '150px',
-      borderRadius: '8px',
-      objectFit: 'cover',
-    },
-    caption: {
-      marginTop: '5px',
-      fontSize: '16px',
-      visibility: hoveredService ? 'visible' : 'hidden',
-      opacity: hoveredService ? 1 : 0,
-      transition: 'opacity 0.3s ease',
-      position: 'absolute',
-      bottom: '10px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      padding: '5px 10px',
-      borderRadius: '4px',
-    },
-  };
-
   return (
     <Layout>
-      <Box
-        sx={{
-          my: 15,
-          textAlign: "center",
-          p: 2,
-          "& h4": {
-            fontWeight: "bold",
-            my: 2,
-            fontSize: "2rem",
-          },
-          "& p": {
-            textAlign: "justify",
-          },
-          "@media (max-width:600px)": {
-            mt: 0,
-            "& h4": {
-              fontSize: "1.5rem",
-            },
-          },
-        }}
-      >
-        <Typography variant="h4">Service Categorization</Typography>
+      <div className="my-15 text-center">
+        <h4 className="font-bold my-2 text-2xl md:text-3xl">Service Categorization</h4>
         
-        <div style={styles.container}>
-          <div style={styles.row}>
+        <div className="flex flex-col md:flex-row justify-center items-center mx-10 md:mx-20 lg:mx-40">
+          <div className="flex justify-center items-center flex-wrap">
             {services.slice(0, 3).map((service, index) => (
               <div 
                 key={index} 
-                style={styles.item}
+                className="flex flex-col items-center m-5 cursor-pointer relative"
                 onMouseEnter={() => handleMouseEnter(service.name)}
                 onMouseLeave={handleMouseLeave}
               >
                 <img 
                   src={service.src} 
                   alt={service.name} 
-                  style={styles.image} 
+                  className="w-40 h-40 rounded-lg object-cover"
                 />
-                <div style={styles.caption}>{service.name}</div>
+                <div className={`text-lg font-bold mt-3 ${hoveredService === service.name ? 'visible opacity-100' : 'invisible opacity-0'} transition-opacity duration-300 absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-75 p-2 rounded`}>{service.name}</div>
               </div>
             ))}
           </div>
           
-          <div style={styles.row}>
+          <div className="flex justify-center items-center flex-wrap mt-10 md:mt-0">
             {services.slice(3, 6).map((service, index) => (
               <div 
                 key={index} 
-                style={styles.item}
+                className="flex flex-col items-center m-5 cursor-pointer relative"
                 onMouseEnter={() => handleMouseEnter(service.name)}
                 onMouseLeave={handleMouseLeave}
               >
                 <img 
                   src={service.src} 
                   alt={service.name} 
-                  style={styles.image} 
+                  className="w-40 h-40 rounded-lg object-cover"
                 />
-                <div style={styles.caption}>{service.name}</div>
+                <div className={`text-lg font-bold mt-3 ${hoveredService === service.name ? 'visible opacity-100' : 'invisible opacity-0'} transition-opacity duration-300 absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-75 p-2 rounded`}>{service.name}</div>
               </div>
             ))}
           </div>
         </div>
         
         {/* Display hovered service name */}
-      </Box>
+      </div>
     </Layout>
   );
 };
 
-export default Services;
+// export default Services;
