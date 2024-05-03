@@ -14,4 +14,6 @@ router.post('/updateStatus',ComplaintController.updateComplaintDetails)
 
 router.post('/bulk',ComplaintController.searchDetails);
 
+router.get('/getAllComplaintCount',ComplaintController.getAllComplaintCount);
+
 module.exports = router;

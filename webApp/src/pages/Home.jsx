@@ -26,19 +26,29 @@ export const Home = () => {
         <div>
         <ul className='relative flex flex-col justify-start md:flex-row p-4'>
           <li className='px-5 text-base'>
-            <button onClick={() => scrollToSection('home')}>Home</button>
+            <button onClick={() => scrollToSection('home')} 
+            onMouseOver={(e) => e.target.style.color = "white"}
+            onMouseOut={(e) => e.target.style.color = "black"}>Home</button>
           </li>
           <li className='px-5'>
-            <button onClick={() => scrollToSection('about')}>About</button>
+            <button onClick={() => scrollToSection('about')}
+            onMouseOver={(e) => e.target.style.color = "white"}
+            onMouseOut={(e) => e.target.style.color = "black"}>About</button>
           </li>
           <li className='px-5'>
-            <button onClick={() => scrollToSection('services')}>Services</button>
+            <button onClick={() => scrollToSection('services')}
+            onMouseOver={(e) => e.target.style.color = "white"}
+            onMouseOut={(e) => e.target.style.color = "black"}>Services</button>
           </li>
           <li className='px-5'>
-            <button onClick={() => scrollToSection('team')}>Team</button>
+            <button onClick={() => scrollToSection('team')}
+            onMouseOver={(e) => e.target.style.color = "white"}
+            onMouseOut={(e) => e.target.style.color = "black"}>Team</button>
           </li>
           <li className='px-5'>
-            <button onClick={() => scrollToSection('contact')}>Contact</button>
+            <button onClick={() => scrollToSection('contact')}
+            onMouseOver={(e) => e.target.style.color = "white"}
+            onMouseOut={(e) => e.target.style.color = "black"}>Contact</button>
           </li>
         </ul>
         </div>
@@ -58,9 +68,9 @@ export const Home = () => {
             padding: "0 20px",
           }}
         >
-          <div className="headerContainer">
-            <h3>Welcome to</h3>
-            <h1>ROADSAFE</h1>
+          <div className="headerContainer p-7 pt-20">
+            <h3 className="text-5xl text-white">Welcome to</h3>
+            <h1 className="text-5xl text-white font-bold">ROADSAFE</h1>
             <div
               className="buttonContainer"
               style={{
@@ -71,7 +81,7 @@ export const Home = () => {
             >
               <Link to="/signin">
                 <button
-                  className="loginButton"
+                  className="loginButton bg-orange-400"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -79,7 +89,7 @@ export const Home = () => {
                     fontSize: "16px",
                     cursor: "pointer",
                     color: "white",
-                    backgroundColor: "darkorange",
+                    // backgroundColor: "darkorange",
                     transition: "background-color 0.3s ease",
                   }}
                   onMouseOver={(e) => e.target.style.backgroundColor = "black"}
@@ -90,7 +100,7 @@ export const Home = () => {
               </Link>
               <Link to="/signup">
                 <button
-                  className="signupButton"
+                  className="signupButton bg-orange-400"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -98,7 +108,7 @@ export const Home = () => {
                     fontSize: "16px",
                     cursor: "pointer",
                     color: "white",
-                    backgroundColor: "darkorange",
+                    // backgroundColor: "darkorange",
                     transition: "background-color 0.3s ease",
                   }}
                   onMouseOver={(e) => e.target.style.backgroundColor = "black"}

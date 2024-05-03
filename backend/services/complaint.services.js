@@ -16,7 +16,6 @@ class ComplaintServices{
       let allComplaintCount = await ComplaintModel.find({email}).countDocuments();
       let completedCount = await ComplaintModel.find().countDocuments({email:email,status: "Completed"});
       let inprocessCount = await ComplaintModel.find().countDocuments({email:email,status:"Inprocess"});
-      console.log(allComplaintCount, completedCount, inprocessCount);
       return [allComplaintCount, completedCount, inprocessCount];
       
     }
@@ -24,6 +23,11 @@ class ComplaintServices{
     static async getComplaintdetailsAll(){
         const Complaintdetails = await ComplaintModel.find({});
         return Complaintdetails;
+    }
+
+    static async getAllComplaintCount(){
+      let allCompletedCount = await ComplaintModel.find({}).countDocuments();
+      return allCompletedCount;
     }
 
     static async deleteComplaint(id){

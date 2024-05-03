@@ -39,6 +39,17 @@ exports.getComplaintDetailsAll = async (req,res,next) =>{
     }
 }
 
+exports.getAllComplaintCount= async (req,res,next) => {
+    try{
+        let count = await ComplaintServices.getAllComplaintCount();
+
+        res.json({status:true, success:count});
+    }
+    catch(error){
+        next(error);
+    }
+}
+
 exports.deleteComplaint = async (req,res,next) =>{
     try{
         const {id} = req.body;
