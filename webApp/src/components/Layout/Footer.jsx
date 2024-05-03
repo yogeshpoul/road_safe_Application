@@ -3,7 +3,7 @@ import { AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillYoutube } fro
 
 export const Footer = () => {
   return (
-    <div className="text-center bg-orange-500 text-white p-3">
+    <div className="text-center bg-orange-400 text-white p-3">
       <div className="my-3">
         {/* icons */}
         <AiFillInstagram className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />

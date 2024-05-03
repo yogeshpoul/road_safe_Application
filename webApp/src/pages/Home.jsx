@@ -1,12 +1,10 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout.jsx";
 import { Link } from "react-router-dom";
 import Banner from "../images/banner.jpg";
 import { About } from "./About.jsx";
 import { Services } from "./Services.jsx";
 import { Team } from "./Team.jsx";
 import { Contact } from "./Contact.jsx";
-import Header from "../components/Layout/Header.jsx";
 import Footer from "../components/Layout/Footer.jsx";
 
 // initialized on remote
@@ -22,11 +20,12 @@ export const Home = () => {
   return (
     <>
       <>
-      {/* <Header/> */}
       <div className="bg-orange-400 fixed w-full z-10">
-      <nav>
+      <nav className="flex justify-between">
+        <div className="pt-1.5 pl-2"><h1 className="text-3xl">ROADSAFE</h1></div>
+        <div>
         <ul className='relative flex flex-col justify-start md:flex-row p-4'>
-          <li className='px-5'>
+          <li className='px-5 text-base'>
             <button onClick={() => scrollToSection('home')}>Home</button>
           </li>
           <li className='px-5'>
@@ -42,6 +41,7 @@ export const Home = () => {
             <button onClick={() => scrollToSection('contact')}>Contact</button>
           </li>
         </ul>
+        </div>
       </nav>
 
       </div>
