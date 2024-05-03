@@ -26,8 +26,9 @@ class ComplaintServices{
     }
 
     static async getAllComplaintCount(){
-      let allCompletedCount = await ComplaintModel.find({}).countDocuments();
-      return allCompletedCount;
+      let getAllComplaintCount = await ComplaintModel.find({}).countDocuments();
+      let allCompletedCount = await ComplaintModel.find({}).countDocuments({status:"Completed"});
+      return [getAllComplaintCount,allCompletedCount];
     }
 
     static async deleteComplaint(id){
