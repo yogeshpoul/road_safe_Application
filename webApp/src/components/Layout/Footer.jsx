@@ -1,21 +1,25 @@
 import React from "react";
-import { AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillYoutube } from "react-icons/ai";
+import { AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillYoutube, AiFillLinkedin } from "react-icons/ai";
 
 export const Footer = () => {
   return (
-    <div className="text-center bg-orange-400 text-white p-3">
-      <div className="my-3">
-        {/* icons */}
-        <AiFillInstagram className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
-        <AiFillTwitterSquare className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
-        <AiFillGithub className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
-        <AiFillYoutube className="text-white text-3xl cursor-pointer inline-block mr-2 hover:text-black transform hover:translate-x-5 transition duration-400" />
+    <div className="text-center bg-orange-300 p-3 flex flex-col md:flex-row items-center justify-between">
+      <div className="my-3 flex items-center">
+        <h2>Our Social Networks</h2>
+        <AiFillLinkedin className="text-white text-3xl cursor-pointer inline-block text-center mr-2 w-9 h-9 bg-orange-500 p-1 rounded-md transition duration-300 ease-in-out" />
+        <AiFillTwitterSquare className="text-white text-3xl cursor-pointer inline-block text-center mr-2 w-9 h-9 bg-orange-500 p-1 rounded-md transition duration-300 ease-in-out" />
+        <AiFillInstagram className="text-white text-3xl cursor-pointer inline-block text-center mr-2 w-9 h-9 bg-orange-500 p-1 rounded-md transition duration-300 ease-in-out" />
+        <AiFillGithub className="text-white text-3xl cursor-pointer inline-block text-center mr-2 w-9 h-9 bg-orange-500 p-1 rounded-md transition duration-300 ease-in-out" />
+        <AiFillYoutube className="text-white text-3xl cursor-pointer inline-block text-center mr-2 w-9 h-9 bg-orange-500 p-1 rounded-md transition duration-300 ease-in-out" />
+
       </div>
-      <p className="text-lg md:text-xl">
-        teamroadsafe@gmail.com
-        <br />
-        9876543217
-      </p>
+
+      <div className="text-left">
+        <h3><span className="font-bold">Mail</span> - help@roadsafe.com</h3>
+        <h3><span className="font-bold">Call</span> - 1800-00-0000</h3>
+        <h3><span className="font-bold">App</span> - Download Now</h3>
+      </div>
+
     </div>
   );
 };

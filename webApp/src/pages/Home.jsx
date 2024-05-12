@@ -51,23 +51,23 @@ export const Home = () => {
         <div>
         <ul className='relative flex flex-col justify-start md:flex-row p-4'>
           <li className={`px-5 text-base ${activeSection === 'home' ? ' text-white' : ''}`}>
-            <button onClick={() => scrollToSection('home')} 
+            <button onClick={() => scrollToSection('home') } className="hover:transform hover:scale-110 transition duration-300 ease-in-out"
             >Home</button>
           </li>
           <li className={`px-5 text-base ${activeSection === 'about-us' ? ' text-white' : ''}`}>
-            <button onClick={() => scrollToSection('about-us')}
+            <button onClick={() => scrollToSection('about-us')} className="hover:transform hover:scale-110 transition duration-300 ease-in-out"
             >About</button>
           </li>
           <li className={`px-5 text-base ${activeSection === 'services' ? ' text-white' : ''}`}>
-            <button onClick={(e) =>{ scrollToSection('services');}}
+            <button onClick={(e) =>{ scrollToSection('services');}} className="hover:transform hover:scale-110 transition duration-300 ease-in-out"
             >Services</button>
           </li>
           <li className={`px-5 text-base ${activeSection === 'team' ? ' text-white' : ''}`}>
-            <button onClick={() => scrollToSection('team')}
+            <button onClick={() => scrollToSection('team')} className="hover:transform hover:scale-110 transition duration-300 ease-in-out"
             >Team</button>
           </li>
           <li className={`px-5 text-base ${activeSection === 'contact' ? ' text-white' : ''}`}>
-            <button onClick={() => scrollToSection('contact')}
+            <button onClick={() => scrollToSection('contact')} className="hover:transform hover:scale-110 transition duration-300 ease-in-out"
             >Contact</button>
           </li>
         </ul>
@@ -101,7 +101,7 @@ export const Home = () => {
             >
               <Link to="/signin">
                 <button
-                  className="loginButton bg-orange-400"
+                  className="loginButton bg-orange-400 hover:transform hover:scale-110 transition duration-200 ease-in-out"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -112,7 +112,7 @@ export const Home = () => {
                     // backgroundColor: "darkorange",
                     transition: "background-color 0.3s ease",
                   }}
-                  onMouseOver={(e) => e.target.style.backgroundColor = "black"}
+                  onMouseOver={(e) => e.target.style.backgroundColor = "green"}
                   onMouseOut={(e) => e.target.style.backgroundColor = "orange"}
                 >
                   Log In
@@ -120,7 +120,7 @@ export const Home = () => {
               </Link>
               <Link to="/signup">
                 <button
-                  className="signupButton bg-orange-400"
+                  className="signupButton bg-orange-400 hover:transform hover:scale-110 transition duration-200 ease-in-out"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -131,7 +131,7 @@ export const Home = () => {
                     // backgroundColor: "darkorange",
                     transition: "background-color 0.3s ease",
                   }}
-                  onMouseOver={(e) => e.target.style.backgroundColor = "black"}
+                  onMouseOver={(e) => e.target.style.backgroundColor = "green"}
                   onMouseOut={(e) => e.target.style.backgroundColor = "orange"}
                 >
                   Sign Up
@@ -154,7 +154,7 @@ export const Home = () => {
           <Team />
         </div>
 
-        <div id="contact" className="p-12 border-b-2 border-gray-700">
+        <div id="contact" className="p-12">
           <Contact />
         </div>
 

@@ -4,7 +4,22 @@ import emailjs from '@emailjs/browser';
 import { FaEnvelope, FaPhone, FaDownload } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import { useState } from 'react';
+
 export const Contact = () => {
+
+  const [isBlinking, setIsBlinking] = useState(false);
+
+  const handleClick = (e) => {
+    setIsBlinking(true);
+
+    // Reset the blinking effect after a short delay
+    setTimeout(() => {
+      setIsBlinking(false);
+    }, 500); // 1000 milliseconds = 1 second
+
+    // Additional logic for form submission or any other action
+  };
   const form = useRef();
 
 
@@ -79,7 +94,11 @@ export const Contact = () => {
             <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">Message</label>
             <textarea id="message" name="message" className="border rounded-md px-3 py-2 w-full h-32"></textarea>
           </div>
-          <button type="submit" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">Send</button>
+          <button
+          type="submit"
+          onClick={handleClick}
+          className={`bg-blue-500 hover:transform hover:scale-110 transition duration-300 ease-in-out text-white py-2 px-4 rounded transition-all ${isBlinking ? 'animate-blink bg-blue-500' : 'animate-blink bg-green-500'}`}
+        >Send</button>
         </form>
       </div>
 
@@ -88,7 +107,7 @@ export const Contact = () => {
       <div className="flex justify-center items-center flex-col my-3">
         <div className="w-full md:w-3/4 lg:w-2/4">
           <table className="w-full border-collapse border border-black rounded-lg">
-            <thead className="bg-black text-white">
+            <thead className="bg-orange-400 text-black">
               <tr>
                 <th className="py-2">Contact Details</th>
               </tr>
