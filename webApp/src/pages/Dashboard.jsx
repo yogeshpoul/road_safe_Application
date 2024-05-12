@@ -55,18 +55,27 @@ export const Dashboard=()=>{
         }
       }, [navigate]);
 
-    return <div style={{backgroundColor:"#EEEEEE"}}>
-      <br></br>
-      <div className="my-2 flex flex-rows " style={{width: "300px", textAlign:"center", margin: "0 auto"}}>
-            <div>
+    return <div className="bg-blue-100/20">     
+      <div className="shadow-lg shadow-yellow-300/50  flex justify-between rounded-md ">
+      <div className="flex flex-row justify-center h-full ml-4 ">
+            <div className="mt-4 pl-2">
             <input onChange={(e)=>{
                 setFilter(e.target.value)
-            }}type="text" placeholder="Search Users..." className="w-full px-2 py-1 border rounded border-slate-300"/>
-            </div>
-            <div className="right-0">
-              {adminName}
+            }}type="text" placeholder="Search Users..." className="ml-3 px-2 py-1 border rounded border-slate-300"/>
             </div>
         </div>
+        <div className="flex">
+                <div className="flex flex-col justify-center h-full mr-2 uppercase font-bold">
+                    <b> {adminName}</b>
+                </div>
+                <div className="rounded-full h-12 w-12 bg-yellow-200/50 flex justify-center mt-1 mr-2">
+                    <div className="flex flex-col justify-center h-full text-xl uppercase font-bold">
+                        {/* U */}
+                        <b> {adminName[0]}</b>
+                    </div>
+                </div>
+            </div>
+      </div>
       {data ? (
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           {console.log(data)}

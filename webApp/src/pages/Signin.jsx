@@ -27,7 +27,7 @@ export const Signin=()=>{
                 }} label={"Password"} placeholder={"pasword"}/>
                 <div className="pt-3">
                     <Button onClick={async() => {
-                        if(password.length<6){
+                        if(password.length<3){
                             alert("enter password with 6 or more digits")
                         }else{
                             
