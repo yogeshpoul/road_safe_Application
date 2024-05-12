@@ -4,6 +4,7 @@ import axios from "axios"
 import { Card } from "./Card"
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Loader from "./Loader";
 
 
 
@@ -58,17 +59,17 @@ export const Dashboard=()=>{
     return <div className="bg-blue-100/20">     
       <div className="shadow-lg shadow-yellow-300/50  flex justify-between rounded-md ">
       <div className="flex flex-row justify-center h-full ml-4 ">
-            <div className="mt-4 pl-2">
+            <div className="mt-4 pl-8 ">
             <input onChange={(e)=>{
                 setFilter(e.target.value)
-            }}type="text" placeholder="Search Users..." className="ml-3 px-2 py-1 border rounded border-slate-300"/>
+            }}type="text" placeholder="Search Complaints..." className="px-2 py-1 border rounded border-slate-300 w-40 sm:w-56 md:w-72 lg:w-96 xl:w-900"/>
             </div>
         </div>
         <div className="flex">
                 <div className="flex flex-col justify-center h-full mr-2 uppercase font-bold">
                     <b> {adminName}</b>
                 </div>
-                <div className="rounded-full h-12 w-12 bg-yellow-200/50 flex justify-center mt-1 mr-2">
+                <div className="rounded-full h-12 w-12 bg-yellow-200/50 flex justify-center mt-1 mr-5">
                     <div className="flex flex-col justify-center h-full text-xl uppercase font-bold">
                         {/* U */}
                         <b> {adminName[0]}</b>
@@ -97,7 +98,8 @@ export const Dashboard=()=>{
           ))}
         </div>
       ) : (
-        <p>Loading...</p>
+      <Loader/>
+        
       )}
     </div>
 }
