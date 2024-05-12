@@ -26,12 +26,12 @@ export const Team = () => {
                 className="w-40 h-40 rounded-lg"
               />
               <div className="text-lg mt-3">{member.name}</div>
-              <div className="flex mt-5 space-x-4">
-                <a href={`mailto:${member.email}`} className="text-blue-500" target="blank">
-                  <FaEnvelope className="text-red-500 text-4xl cursor-pointer" />
+              <div className="flex mt-5 space-x-4 ">
+                <a href={`mailto:${member.email}`} className="text-blue-500" target="blank" >
+                  <FaEnvelope className="text-red-500 text-4xl cursor-pointer hover:transform hover:scale-110 transition duration-300 ease-in-out" />
                 </a>
                 <a href={`${member.linkedin}`} className="text-blue-500" target="blank">
-                  <FaLinkedin className="text-blue-600 text-4xl cursor-pointer" />
+                  <FaLinkedin className="text-blue-600 text-4xl cursor-pointer hover:transform hover:scale-110 transition duration-300 ease-in-out" />
                 </a>
               </div>
             </div>
