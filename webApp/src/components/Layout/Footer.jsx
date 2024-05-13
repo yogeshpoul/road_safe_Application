@@ -11,19 +11,19 @@ export const Footer = () => {
           <div className="flex flex-wrap gap-2">
 
             <a href="https://www.linkedin.com/login" target="blank">
-            <AiFillLinkedin className="text-white text-4xl" /></a>
+            <AiFillLinkedin className="text-white text-4xl hover:transform hover:scale-110 transition duration-300 ease-in-out" /></a>
 
             <a href="https://twitter.com/i/flow/login" target="blank">
-            <AiFillTwitterSquare className="text-white text-4xl " /></a>
+            <AiFillTwitterSquare className="text-white text-4xl hover:transform hover:scale-110 transition duration-300 ease-in-out " /></a>
 
             <a href="https://www.instagram.com/accounts/login/?hl=en" target="blank">
-            <AiFillInstagram className="text-white text-4xl cursor-pointer transition duration-300 ease-in-out" /></a>
+            <AiFillInstagram className="text-white text-4xl hover:transform hover:scale-110 transition duration-300 ease-in-out" /></a>
 
             <a href="https://github.com/login" target="blank">
-            <AiFillGithub className="text-white text-4xl cursor-pointer transition duration-300 ease-in-out" /></a>
+            <AiFillGithub className="text-white text-4xl hover:transform hover:scale-110 transition duration-300 ease-in-out" /></a>
 
             <a href="https://www.youtube.com" target="blank">
-            <AiFillYoutube className="text-white text-4xl cursor-pointer transition duration-300 ease-in-out" /></a>
+            <AiFillYoutube className="text-white text-4xl hover:transform hover:scale-110 transition duration-300 ease-in-out" /></a>
           </div>
         </div>
 
