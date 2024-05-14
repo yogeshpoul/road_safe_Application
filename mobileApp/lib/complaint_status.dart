@@ -58,7 +58,7 @@ class _complaint_statusState extends State<complaint_status> {
                       Text(
                         'Return to Home',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20,fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],

@@ -18,6 +18,7 @@ class user_profile extends StatefulWidget {
 class _user_profileState extends State<user_profile> {
   List? items;
   late String email;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -32,6 +33,9 @@ class _user_profileState extends State<user_profile> {
   }
 
   void userDetails(email) async {
+    setState(() {
+      isLoading = true; // Set isLoading to true before making the request
+    });
     var reqBody = {"email": email};
 
     var response = await http.post(Uri.parse(userDetail),
@@ -46,7 +50,9 @@ class _user_profileState extends State<user_profile> {
     print("below is items body");
     print(items);
 
-    setState(() {});
+    setState(() {
+      isLoading = false; // Set isLoading to false after getting the response
+    });
   }
 
   @override
@@ -160,6 +166,11 @@ class _user_profileState extends State<user_profile> {
                   ),
                 ),
               SizedBox(height: 20),
+              if (isLoading)
+                Center(
+                  // Show loading indicator if isLoading is true
+                  child: CircularProgressIndicator(),
+                ),
             ],
           ),
         ),

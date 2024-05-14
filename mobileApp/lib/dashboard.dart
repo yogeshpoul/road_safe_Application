@@ -442,7 +442,7 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       Text(
                         'Raise Complaint',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400,),
                       ),
                     ],
                   ),

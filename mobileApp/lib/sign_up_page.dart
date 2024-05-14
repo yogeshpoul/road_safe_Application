@@ -23,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
 
   bool _isNotValidate = false;
+  bool isLoading = false;
 
   io.File? selectedImage;
 
@@ -82,6 +83,9 @@ class _SignUpState extends State<SignUp> {
 
   void registerUser() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      setState(() {
+        isLoading = true;
+      });
       var regBody = {
         "userImage": base64String,
         "firstName": firstNameController.text,
@@ -103,10 +107,12 @@ class _SignUpState extends State<SignUp> {
             context, MaterialPageRoute(builder: (context) => SignInPage()));
       } else {
         print("Something went wrong!!!");
+        isLoading = false;
       }
     } else {
       setState(() {
         _isNotValidate = true;
+        isLoading = false;
       });
     }
   }
@@ -317,10 +323,17 @@ class _SignUpState extends State<SignUp> {
                     Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
-                          onPressed: () {
-                            registerUser();
-                          },
-                          child: const Text('Sign Up'),
+                          onPressed: isLoading ? null : registerUser,
+                child: isLoading
+                    ? SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                            // valueColor:
+                            //     AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                      )
+                    : const Text('Sign In'),
                         )),
                     const SizedBox(
                       height: 7,

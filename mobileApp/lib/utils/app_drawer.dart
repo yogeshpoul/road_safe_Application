@@ -85,16 +85,6 @@ class _AppDrawerState extends State<AppDrawer> {
                 );
                 // Then close the drawer
               }),
-          // ListTile(
-          //     leading: const Icon(Icons.map, color: Colors.black),
-          //     title: const Text('Map'),
-          //     selected: selectedIndex == 2,
-          //     onTap: () {
-          //       // Update the state of the app
-          //       _onItemTapped(2);
-          //       // Then close the drawer
-          //       Navigator.pop(context);
-          //     }),
           ListTile(
               leading:
                   const Icon(Icons.account_box_rounded, color: Colors.black),
@@ -116,20 +106,24 @@ class _AppDrawerState extends State<AppDrawer> {
                 );
               }),
           ListTile(
-              leading: const Icon(Icons.logout, color: Colors.black),
-              title: const Text('Sign Out'),
-              selected: selectedIndex == 3,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(3);
-                // Then close the drawer
+            leading: const Icon(Icons.logout, color: Colors.black),
+            title: const Text('Sign Out'),
+            selected: selectedIndex == 3,
+            onTap: () {
+              // Clear JWT token from shared preferences
+              prefs.remove('token');
 
-                Navigator.pop(context);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInPage()),
-                );
-              }),
+              // Update the state of the app
+              _onItemTapped(3);
+
+              // Navigate to the login page
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => SignInPage()),
+              );
+            },
+          ),
         ],
       ),
     );

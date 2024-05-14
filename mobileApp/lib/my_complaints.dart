@@ -18,7 +18,7 @@ class my_complaint extends StatefulWidget {
 class _my_complaintState extends State<my_complaint> {
   List? items;
   List? cnt;
-
+  bool isLoading = true;
   late String email;
   late String Uid;
 
@@ -37,6 +37,9 @@ class _my_complaintState extends State<my_complaint> {
   }
 
   void getComplaintDetails(email) async {
+    setState(() {
+      isLoading = true; // Set isLoading to true before making the request
+    });
     var reqBody = {"email": email};
 
     var response = await http.post(Uri.parse(getComplaintData),
@@ -56,7 +59,9 @@ class _my_complaintState extends State<my_complaint> {
     print(cnt);
     print(cnt![0]);
 
-    setState(() {});
+    setState(() {
+      isLoading = false; // Set isLoading to false after getting the response
+    });
   }
 
   void deleteItem(id) async {
@@ -108,102 +113,112 @@ class _my_complaintState extends State<my_complaint> {
             ),
             Expanded(
               child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: items == null
-                      ? null
-                      : ListView.builder(
-                          itemCount: items!.length,
-                          itemBuilder: (context, int index) {
-                            return Slidable(
-                              key: const ValueKey(0),
-                              endActionPane: ActionPane(
-                                motion: const ScrollMotion(),
-                                children: [
-                                  SlidableAction(
-                                    backgroundColor: Color(0xFFFE4A49),
-                                    foregroundColor: Colors.white,
-                                    icon: Icons.delete,
-                                    label: 'Delete',
-                                    onPressed: (BuildContext context) {
-                                      print('${items![index]['_id']}');
-                                      deleteItem('${items![index]['_id']}');
-                                    },
-                                  ),
-                                ],
-                              ),
-                              child: Card(
-                                // borderOnForeground: false,
-                                child: ListTile(
-                                  // leading: Icon(Icons.task),
-                                  title: Image.memory(
-                                    base64Decode(items![index][
-                                        'image']), // Convert base64 string to bytes
-                                    width:
-                                        50, // Set width and height according to your preference
-                                    height: 150,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        text: TextSpan(
-                                          text: 'Complaint Id : ',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight
-                                                .bold, // Make the "Email :" text bold
-                                            fontSize: 16, // Set the font size
-                                            color: Colors.black,
-                                          ),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: '${items![index]['_id']}',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight
-                                                    .normal, // Keep the email text normal
-                                                fontSize:
-                                                    16, // Set the font size
-                                                color: Colors.black,
+                child: isLoading
+                    ? Center(
+                        // Show loading indicator if isLoading is true
+                        child: CircularProgressIndicator(),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: items == null
+                            ? null
+                            : ListView.builder(
+                                itemCount: items!.length,
+                                itemBuilder: (context, int index) {
+                                  return Slidable(
+                                    key: const ValueKey(0),
+                                    endActionPane: ActionPane(
+                                      motion: const ScrollMotion(),
+                                      children: [
+                                        SlidableAction(
+                                          backgroundColor: Color(0xFFFE4A49),
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.delete,
+                                          label: 'Delete',
+                                          onPressed: (BuildContext context) {
+                                            print('${items![index]['_id']}');
+                                            deleteItem(
+                                                '${items![index]['_id']}');
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    child: Card(
+                                      // borderOnForeground: false,
+                                      child: ListTile(
+                                        // leading: Icon(Icons.task),
+                                        title: Image.memory(
+                                          base64Decode(items![index][
+                                              'image']), // Convert base64 string to bytes
+                                          width:
+                                              50, // Set width and height according to your preference
+                                          height: 150,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                text: 'Complaint Id : ',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight
+                                                      .bold, // Make the "Email :" text bold
+                                                  fontSize:
+                                                      16, // Set the font size
+                                                  color: Colors.black,
+                                                ),
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text:
+                                                        '${items![index]['_id']}',
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .normal, // Keep the email text normal
+                                                      fontSize:
+                                                          16, // Set the font size
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Text(
+                                                'Address : ${items![index]['location']}'),
+                                            Text(
+                                                'Category : ${items![index]['category'][0]}'),
+                                            Text(
+                                                'Description : ${items![index]['description']}'),
+                                            Text(
+                                                'Date : ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![index]['createdAt']).toLocal())}'),
+                                            SizedBox(height: 8),
+                                            Container(
+                                              padding: EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                color: Colors.amber,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10), // Add border radius
+                                              ),
+                                              // isComplaintRaised ? 'Complaint raised!' : 'No complaint raised',
+                                              child: Text(
+                                                ("${items![index]['status']}" ==
+                                                        'Update Status')
+                                                    ? "Complaint raised!"
+                                                    : "${items![index]['status']}",
+                                                style: TextStyle(
+                                                    color: Colors.black),
                                               ),
                                             ),
                                           ],
                                         ),
+                                        trailing: Icon(Icons.arrow_back),
                                       ),
-                                      Text(
-                                          'Address : ${items![index]['location']}'),
-                                      Text(
-                                          'Category : ${items![index]['category'][0]}'),
-                                      Text(
-                                          'Description : ${items![index]['description']}'),
-                                      Text(
-                                          'Date : ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![index]['createdAt']).toLocal())}'),
-                                      SizedBox(height: 8),
-                                      Container(
-                                        padding: EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius: BorderRadius.circular(
-                                              10), // Add border radius
-                                        ),
-                                        // isComplaintRaised ? 'Complaint raised!' : 'No complaint raised',
-                                        child: Text(
-                                          ("${items![index]['status']}" ==
-                                                  'Update Status')
-                                              ? "Complaint raised!"
-                                              : "${items![index]['status']}",
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  trailing: Icon(Icons.arrow_back),
-                                ),
-                              ),
-                            );
-                          }),
-                ),
+                                    ),
+                                  );
+                                }),
+                      ),
               ),
             )
           ],

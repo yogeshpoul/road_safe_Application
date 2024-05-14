@@ -5,18 +5,26 @@ import 'package:road_safe_app/sign_in_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //use to initialize app
-  SharedPreferences prefs =
-      await SharedPreferences.getInstance(); // use to store data
-  runApp(MyApp(
-    token: prefs.getString('token'),
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs;
+  String? token;
+
+  try {
+    prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token');
+  } catch (e) {
+    // Handle error when retrieving token
+    print('Error retrieving token: $e');
+  }
+
+  runApp(MyApp(token: token));
 }
 
 class MyApp extends StatelessWidget {
-  final token;
+  final String? token;
+
   const MyApp({
-    @required this.token,
+    required this.token,
     Key? key,
   }) : super(key: key);
 
@@ -25,10 +33,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: (JwtDecoder.isExpired(token) == false)
-          ? Dashboard(token: token)
+        primaryColor: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: (token != null && !JwtDecoder.isExpired(token!))
+          ? Dashboard(token: token!)
           : SignInPage(),
     );
   }

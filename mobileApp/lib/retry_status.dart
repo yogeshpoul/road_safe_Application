@@ -52,7 +52,7 @@ class _retryState extends State<retry> {
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('Retry', style: TextStyle(fontSize: 20,),),
+                      Text('Retry', style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,),),
                     ],
                   ),
                   onPressed: () {

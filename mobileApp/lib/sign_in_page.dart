@@ -19,6 +19,7 @@ class _SignInPageState extends State<SignInPage> {
   bool _isNotValidate = false;
   late SharedPreferences prefs;
   String? myToken;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -32,6 +33,9 @@ class _SignInPageState extends State<SignInPage> {
 
   void loginUser() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      setState(() {
+        isLoading = true;
+      });
       var reqBody = {
         "email": emailController.text,
         "password": passwordController.text
@@ -63,12 +67,14 @@ class _SignInPageState extends State<SignInPage> {
         );
       } else {
         setState(() {
+          isLoading = false;
           _isNotValidate = true;
         });
       }
     } else {
       setState(() {
         _isNotValidate = true;
+        isLoading = false;
       });
     }
   }
@@ -142,10 +148,17 @@ class _SignInPageState extends State<SignInPage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               child: ElevatedButton(
-                onPressed: () {
-                  loginUser();
-                },
-                child: const Text('Sign In'),
+                onPressed: isLoading ? null : loginUser,
+                child: isLoading
+                    ? SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                            // valueColor:
+                            //     AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                      )
+                    : const Text('Sign In'),
               ),
             ),
             const SizedBox(
