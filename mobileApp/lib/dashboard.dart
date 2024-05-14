@@ -30,6 +30,7 @@ class _DashboardState extends State<Dashboard> {
 
   late String img64;
   late String base64String;
+  bool isLoading = false;
 
   Future pickImageFromGallery() async {
     final returnedImage =
@@ -214,12 +215,6 @@ class _DashboardState extends State<Dashboard> {
         iouThreshold: 0.8,
         confThreshold: 0.4,
         classThreshold: 0.5);
-
-    // if (result.isNotEmpty) {
-    //   setState(() {
-    //     yoloResults = result;
-    //   });
-    // }
 
     if (result.isNotEmpty) {
       Navigator.pushReplacement(
@@ -437,24 +432,48 @@ class _DashboardState extends State<Dashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Raise Complaint',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400,),
-                      ),
-                    ],
+                  child: Text(
+                    'Raise Complaint',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                   onPressed: () {
-                    if (selectedImage != null) {
-                      yolov8(selectedImage!);
+                    if (selectedImage != null && !isLoading) {
+                      setState(() {
+                        isLoading =
+                            true; // Set isLoading to true when button is pressed
+                      });
+                      yolov8(selectedImage!).then((_) {
+                        setState(() {
+                          isLoading =
+                              false; // Set isLoading to false after function execution
+                        });
+                        // Check result and redirect accordingly
+                        if (result.isNotEmpty) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => complaint_status()),
+                          );
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => retry()),
+                          );
+                        }
+                      });
                     }
-
-                    print('raising complaint');
                   },
                 ),
               ),
+              if (isLoading) // Show loading indicator if isLoading is true
+                Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                  ),
+                ),
             ],
           ),
         ),

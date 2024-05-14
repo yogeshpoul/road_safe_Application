@@ -329,8 +329,7 @@ class _SignUpState extends State<SignUp> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(
-                            // valueColor:
-                            //     AlwaysStoppedAnimation<Color>(Colors.white),
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                             ),
                       )
                     : const Text('Sign In'),

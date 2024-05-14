@@ -169,7 +169,7 @@ class _user_profileState extends State<user_profile> {
               if (isLoading)
                 Center(
                   // Show loading indicator if isLoading is true
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),),
                 ),
             ],
           ),

@@ -116,7 +116,7 @@ class _my_complaintState extends State<my_complaint> {
                 child: isLoading
                     ? Center(
                         // Show loading indicator if isLoading is true
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),),
                       )
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
