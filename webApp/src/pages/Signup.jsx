@@ -10,22 +10,40 @@ import Banner from "../images/banner.jpg";
 
 
 
+
 export const Signup = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const [email,setEmail]=useState("");
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+
+    const handleSignup = async () => {
+        setLoading(true); // Set loading to true when sign up starts
+        try {
+            const response = await axios.post("https://road-backend.vercel.app/registration", {
+                firstName,
+                lastName,
+                email: username,
+                password
+            });
+            if (response.data.success === "User Registered Successfully") {
+                navigate("/signin");
+            } else {
+                alert("You already have an account");
+            }
+            localStorage.setItem("token", response.data.token);
+        } catch (error) {
+            console.error("Error occurred during sign up:", error);
+            alert("Error occurred during sign up. Please try again.");
+        } finally {
+            setLoading(false); // Set loading to false after sign up completes (success or error)
+        }
+    };
 
     return (
         <div className="flex justify-center bg-gray-900 h-screen" style={{ backgroundImage: `url(${Banner})` }}>
-            {/* <div className="bg-white">
-            username is {email}
-            password is {password}
-            firstName is {firstName}
-            lastname is {lastName}
-            </div> */}
             <div className="bg-customYellow fixed w-full z-10">
                 <nav className="flex justify-between">
                     <div className="pt-1.5 pl-2">
@@ -55,22 +73,7 @@ export const Signup = () => {
                         setPassword(e.target.value)
                     }} label={"password"} placeholder={"password"} />
                     <div className="pt-4">
-                        <Button onClick={async () => {
-                            const response = await axios.post("https://road-backend.vercel.app/registration", {
-                                firstName,
-                                lastName,
-                                email: username,
-                                password
-                            }).then(function (response) {
-                                if (response.data.success == "User Registered Successfully") {
-                                    navigate("/signin")
-                                }
-                                else {
-                                    alert("you already have an account")
-                                }
-                            })
-                            localStorage.setItem("token", response.data.token)
-                        }} label={"Sign up"} />
+                    <Button onClick={handleSignup} label={loading ? "Signing up..." : "Sign up"} disabled={loading}/>
                     </div>
                     <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/signin"} />
                     {/* <BottomWarning label={"Already have an account ? "} buttonText={"Sign In"} to={"/signin"} /> */}

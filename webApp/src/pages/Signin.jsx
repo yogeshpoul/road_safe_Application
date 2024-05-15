@@ -11,10 +11,32 @@ import Banner from "../images/banner.jpg";
 export const Signin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const handleLogin = async () => {
+        if (password.length < 3) {
+            alert("Please enter correct credentials!");
+        } else {
+            setLoading(true); // Set loading to true when login starts
+            try {
+                const response = await axios.post("https://road-backend.vercel.app/login", {
+                    email: username,
+                    password: password
+                });
+                localStorage.setItem("token", response.data.token);
+                navigate("/dashboard");
+            } catch (error) {
+                console.error("Error occurred during login:", error);
+                alert("Error occurred during login. Please try again.");
+            } finally {
+                setLoading(false); // Set loading to false after login completes (success or error)
+            }
+        }
+    };
+
     return (
-        <div className="flex justify-center bg-gray-900 h-screen " style={{ backgroundImage: `url(${Banner})` }}>
+        <div className="flex justify-center bg-gray-900 h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(${Banner})` }}>
 
             <div className="bg-customYellow fixed w-full z-10">
                 <nav className="flex justify-between">
@@ -38,22 +60,9 @@ export const Signin = () => {
                         setPassword(e.target.value)
                     }} label={"Password"} placeholder={"pasword"} />
                     <div className="pt-3">
-                        <Button onClick={async () => {
-                            if (password.length < 3) {
-                                alert("enter password with 6 or more digits")
-                            } else {
-
-                                const response = await axios.post("https://road-backend.vercel.app/login", {
-                                    email: username,
-                                    password: password
-                                })
-                                console.log("clicked")
-                                localStorage.setItem("token", response.data.token);
-                                navigate("/dashboard");
-                            }
-                        }} label={"Sign in"} />
+                    <Button onClick={handleLogin} label={loading ? "Signing in..." : "Sign in"} />
+                        <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />
                     </div>
-                    <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />
                 </div>
             </div>
         </div>
