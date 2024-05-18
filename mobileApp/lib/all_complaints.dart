@@ -46,17 +46,8 @@ class _AllComplaintsState extends State<AllComplaints> {
             const Column(
               children: [
                 Text("Id : 1"),
-                // SizedBox(
-                //   height: 10,
-                // ),
                 Text("Status : pending"),
-                // SizedBox(
-                //   height: 10,
-                // ),
                 Text("location : road"),
-                // SizedBox(
-                //   height: 10,
-                // ),
               ],
             )
           ]),

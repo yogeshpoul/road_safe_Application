@@ -37,9 +37,6 @@ class _DashboardState extends State<Dashboard> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       selectedImage = io.File(returnedImage!.path);
-
-      // final bytes = io.File(returnedImage.path).readAsBytesSync();
-      // img64 = base64Encode(bytes);
     });
 
     Uint8List imageData = await readImageFile(selectedImage!.path);
@@ -92,30 +89,48 @@ class _DashboardState extends State<Dashboard> {
   Location location = Location();
   late bool serviceEnabled;
   late PermissionStatus permissionGranted;
-  late LocationData locationData;
   LocationData? currentLocation; //setting location state
-  late double? latitude;
-  late double? longitude;
-  String address = 'Your address'; //setting address
+  late double latitude;
+  late double longitude;
+  String address = 'Your address';
+  bool isLoadingLocation = false;
 
-  Future<dynamic> getLocation() async {
+  Future<void> getLocation() async {
+    setState(() {
+      isLoadingLocation = true;
+    });
+
     serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) serviceEnabled = await location.requestService();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        setState(() {
+          isLoadingLocation = false;
+        });
+        return;
+      }
+    }
 
     permissionGranted = await location.hasPermission();
     if (permissionGranted == PermissionStatus.denied) {
       permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        setState(() {
+          isLoadingLocation = false;
+        });
+        return;
+      }
     }
 
-    locationData = await location.getLocation();
+    currentLocation = await location.getLocation();
 
     setState(() {
-      currentLocation = locationData;
       latitude = currentLocation!.latitude!;
       longitude = currentLocation!.longitude!;
+      isLoadingLocation = false;
     });
 
-    return locationData;
+    getLocationDetails(latitude, longitude);
   }
 
   String accessToken = "pk.6ad0615ce37a554ee116ff99d77a2b36";
@@ -132,10 +147,7 @@ class _DashboardState extends State<Dashboard> {
         final data = json.decode(response.body);
         setState(() {
           address = data['display_name'];
-
-          // location controller
           print(address);
-          //
         });
       } else {
         // Handle error
@@ -345,15 +357,25 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         onPressed: () {
                           getLocation();
-                          getLocationDetails(latitude!, longitude!);
                         }),
                   ),
                 ],
               ),
-
-              const SizedBox(
-                height: 5,
-              ),
+              if (isLoadingLocation)
+                Transform.translate(
+                  offset: const Offset(4.0, 0.0), // Move 4 pixels to the right
+                  child: SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                        strokeWidth: 3.0, // Reduce the thickness
+                      ),
+                    ),
+                  ),
+                ),
 
               Wrap(children: [
                 Padding(

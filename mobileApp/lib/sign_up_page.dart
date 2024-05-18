@@ -35,9 +35,6 @@ class _SignUpState extends State<SignUp> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       selectedImage = io.File(returnedImage!.path);
-
-      // final bytes = io.File(returnedImage.path).readAsBytesSync();
-      // img64 = base64Encode(bytes);
     });
 
     Uint8List imageData = await readImageFile(selectedImage!.path);
@@ -192,8 +189,6 @@ class _SignUpState extends State<SignUp> {
                                   Icons.image_search_rounded,
                                   size: 30,
                                 ),
-                                // SizedBox(width: 4),
-                                // Text('Choose from gallery'),
                               ],
                             ),
                             onPressed: () {

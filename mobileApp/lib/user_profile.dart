@@ -118,9 +118,28 @@ class _user_profileState extends State<user_profile> {
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
-                    'First Name: ${items![0]['firstName']}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'First Name: ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors
+                                .black, // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                        TextSpan(
+                          text: items![0]['firstName'],
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                                 // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               SizedBox(height: 20),
@@ -132,9 +151,28 @@ class _user_profileState extends State<user_profile> {
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
-                    'Last Name: ${items![0]['lastName']}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Last Name: ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors
+                                .black, // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                        TextSpan(
+                          text: items![0]['lastName'],
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                                 // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               SizedBox(height: 20),
@@ -146,9 +184,28 @@ class _user_profileState extends State<user_profile> {
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
-                    'Email: ${items![0]['email']}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Email : ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors
+                                .black, // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                        TextSpan(
+                          text: items![0]['email'],
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                                 // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               SizedBox(height: 20),
@@ -160,16 +217,38 @@ class _user_profileState extends State<user_profile> {
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
-                    'Registered on : ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![0]['createdAt']).toLocal())}',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  // ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![0]['createdAt']).toLocal())}'
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Registered on : ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors
+                                .black, // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                        TextSpan(
+                          text: DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(items![0]['createdAt']).toLocal()),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                                 // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               SizedBox(height: 20),
               if (isLoading)
                 Center(
                   // Show loading indicator if isLoading is true
-                  child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),),
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                  ),
                 ),
             ],
           ),
