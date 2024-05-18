@@ -4,18 +4,16 @@ import 'package:road_safe_app/dashboard.dart';
 import 'package:road_safe_app/utils/app_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class complaint_status extends StatefulWidget {
   @override
   State<complaint_status> createState() => _complaint_statusState();
-
 }
 
 class _complaint_statusState extends State<complaint_status> {
   late SharedPreferences prefs;
-  
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     initSharedPref();
   }
@@ -40,7 +38,7 @@ class _complaint_statusState extends State<complaint_status> {
               Text(
                 "Your Complaint has been raised Successfully!",
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                 ),
               ),
               SizedBox(
@@ -58,7 +56,8 @@ class _complaint_statusState extends State<complaint_status> {
                       Text(
                         'Return to Home',
                         style: TextStyle(
-                          fontSize: 20,fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
@@ -67,10 +66,10 @@ class _complaint_statusState extends State<complaint_status> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Dashboard(
-                                token: prefs.getString('token'),
-                              ),
-                              ),
+                        builder: (context) => Dashboard(
+                          token: prefs.getString('token'),
+                        ),
+                      ),
                     );
 
                     // print('raising complaint');

@@ -491,6 +491,9 @@ class _DashboardState extends State<Dashboard> {
                   },
                 ),
               ),
+
+              const SizedBox(height: 10),
+
               if (isLoading) // Show loading indicator if isLoading is true
                 Center(
                   child: CircularProgressIndicator(

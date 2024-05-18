@@ -40,7 +40,7 @@ class _retryState extends State<retry> {
               Text(
                 "There is issue in raising your complaint please, Retry it!",
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                 ),
               ),
               SizedBox(

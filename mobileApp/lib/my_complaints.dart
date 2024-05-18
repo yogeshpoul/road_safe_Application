@@ -150,13 +150,18 @@ class _my_complaintState extends State<my_complaint> {
                                       // borderOnForeground: false,
                                       child: ListTile(
                                         // leading: Icon(Icons.task),
-                                        title: Image.memory(
-                                          base64Decode(items![index][
-                                              'image']), // Convert base64 string to bytes
-                                          width:
-                                              50, // Set width and height according to your preference
-                                          height: 150,
-                                          fit: BoxFit.cover,
+                                        title: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              8.0), // Set the border radius to 8
+                                          child: Image.memory(
+                                            base64Decode(items![index][
+                                                'image']), // Convert base64 string to bytes
+                                            width:
+                                                50, // Set width according to your preference
+                                            height:
+                                                150, // Set height according to your preference
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                         subtitle: Column(
                                           crossAxisAlignment:

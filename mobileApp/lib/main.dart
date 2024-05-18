@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:road_safe_app/dashboard.dart';
-import 'package:road_safe_app/sign_in_page.dart';
 import 'package:road_safe_app/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,7 +34,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreen(token: token),  // Use SplashScreen as the initial screen
+      home:
+          SplashScreen(token: token), // Use SplashScreen as the initial screen
     );
   }
 }
