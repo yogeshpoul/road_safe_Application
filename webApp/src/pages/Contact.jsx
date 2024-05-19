@@ -107,7 +107,7 @@ export const Contact = () => {
       <div className="flex justify-center items-center flex-col my-3">
         <div className="w-full md:w-3/4 lg:w-2/4">
           <table className="w-full border-collapse border border-black rounded-lg">
-            <thead className="bg-customYellow text-black">
+            <thead className="bg-orange-400 text-black">
               <tr>
                 <th className="py-2">Contact Details</th>
               </tr>

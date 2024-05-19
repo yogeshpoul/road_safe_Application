@@ -3,7 +3,7 @@ import { AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillYoutube, AiFi
 
 export const Footer = () => {
   return (
-    <div className="text-center bg-customYellow p-8 flex flex-col md:flex-row items-center justify-between">
+    <div className="text-center bg-orange-400 p-8 flex flex-col md:flex-row items-center justify-between">
       <div className="my-3 flex items-center flex-col md:flex-row">
 
         <div className="mb-2 md:mb-0 text-left">

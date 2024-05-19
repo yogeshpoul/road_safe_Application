@@ -45,7 +45,7 @@ export const Home = () => {
   return (
     <>
       <>
-      <div className="bg-customYellow fixed w-full z-10">
+      <div className="bg-orange-400 fixed w-full z-10">
       <nav className="flex justify-between">
         <div className="pt-1.5 pl-2"><h1 className="text-3xl">ROADSAFE</h1></div>
         <div>
@@ -101,7 +101,7 @@ export const Home = () => {
             >
               <Link to="/signin">
                 <button
-                  className="loginButton bg-customYellow hover:transform hover:scale-110 transition duration-200 ease-in-out"
+                  className="loginButton bg-orange-400 hover:transform hover:scale-110 transition duration-200 ease-in-out"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -113,14 +113,14 @@ export const Home = () => {
                     transition: "background-color 0.3s ease",
                   }}
                   onMouseOver={(e) => e.target.style.backgroundColor = "#22c55e"}
-                  onMouseOut={(e) => e.target.style.backgroundColor = "#FFBF00"}
+                  onMouseOut={(e) => e.target.style.backgroundColor = "#fb923c"}
                 >
                   Log In
                 </button>
               </Link>
               <Link to="/signup">
                 <button
-                  className="signupButton bg-customYellow hover:transform hover:scale-110 transition duration-200 ease-in-out"
+                  className="signupButton bg-orange-400 hover:transform hover:scale-110 transition duration-200 ease-in-out"
                   style={{
                     padding: "10px 20px",
                     border: "none",
@@ -132,7 +132,7 @@ export const Home = () => {
                     transition: "background-color 0.3s ease",
                   }}
                   onMouseOver={(e) => e.target.style.backgroundColor = "#22c55e"}
-                  onMouseOut={(e) => e.target.style.backgroundColor = "#FFBF00"}
+                  onMouseOut={(e) => e.target.style.backgroundColor = "#fb923c"}
                 >
                   Sign Up
                 </button>

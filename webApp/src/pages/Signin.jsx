@@ -38,7 +38,7 @@ export const Signin = () => {
     return (
         <div className="flex justify-center bg-gray-900 h-screen bg-cover bg-no-repeat" style={{ backgroundImage: `url(${Banner})` }}>
 
-            <div className="bg-customYellow fixed w-full z-10">
+            <div className="bg-orange-400 fixed w-full z-10">
                 <nav className="flex justify-between">
                     <div className="pt-1.5 pl-2">
                         <h1 className="text-3xl">ROADSAFE</h1>
