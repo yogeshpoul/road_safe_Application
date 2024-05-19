@@ -5,6 +5,7 @@ import { Card } from "./Card"
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Loader from "./Loader";
+import { FiLogOut } from "react-icons/fi";
 
 export const Dashboard = () => {
   let cnt = 1;
@@ -13,7 +14,7 @@ export const Dashboard = () => {
   const [adminName, setAdminName] = useState("0");
   const [adminLast, setAdminLast] = useState("0");
   const navigate = useNavigate();
-  // const[complaint,setComplaint]=useState([])
+  const [isHovered, setIsHovered] = useState(false);
 
 
   useEffect(() => {
@@ -25,8 +26,6 @@ export const Dashboard = () => {
 
         // console.log(response.data.success)
         setData(response.data.success)
-        // setBalance(response.data.balance);
-        // setName(response.data.name)
       } catch (error) {
         console.error("Error fetching balance:", error);
       }
@@ -42,8 +41,6 @@ export const Dashboard = () => {
       try {
         console.log(token)
         const decodedToken = jwtDecode(token);
-        // console.log("token idsgfsidog",decodedToken)
-        // const adminEmail = decodedToken.email;
         const adminName = decodedToken.firstName;
         const adminLast = decodedToken.lastName;
         // Now you have the admin's name, you can use it as needed
@@ -56,6 +53,11 @@ export const Dashboard = () => {
       }
     }
   }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/home"); // Redirect to home page after logout
+  };
 
   return (
     <div className="bg-blue-200/20">
@@ -71,10 +73,21 @@ export const Dashboard = () => {
           <div className="ml-5 flex flex-col justify-center h-full mr-2 uppercase">
             <b> {adminName} {adminLast}</b>
           </div>
-          <div className="mb-1.5 mt-1.5 rounded-full h-12 w-12 bg-yellow-200/50 flex justify-center mt-1 mr-10">
+          <div className="mb-1.5 mt-1.5 rounded-full h-12 w-12 bg-yellow-200/50 flex justify-center mt-1 mr-4">
             <div className="flex flex-col justify-center h-full text-xl uppercase">
-       <b> {adminName[0]}{adminLast[0]}</b>
+              <b> {adminName[0]}{adminLast[0]}</b>
             </div>
+          </div>
+          <div className="flex flex-col justify-center h-full mr-5 cursor-pointer" onClick={handleLogout}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
+            <FiLogOut size={24} />
+            {isHovered && (
+              <span className="absolute transform -translate-x-1/2 -translate-y-full mt-28 px-2 py-1 ml-3 bg-black text-white text-sm rounded-md shadow-lg">
+                Logout
+              </span>
+            )}
+
           </div>
         </div>
       </div>
@@ -102,8 +115,8 @@ export const Dashboard = () => {
         <Loader />
 
       )}
-      <br/>
-      <br/>
+      <br />
+      <br />
     </div>
   );
 };
