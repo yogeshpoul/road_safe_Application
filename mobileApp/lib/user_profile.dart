@@ -26,9 +26,6 @@ class _user_profileState extends State<user_profile> {
 
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
     email = jwtDecodedToken['email'];
-    // print("my_complaints");
-    // print(email);
-    // print("my_complaints");
     userDetails(email);
   }
 
@@ -45,10 +42,6 @@ class _user_profileState extends State<user_profile> {
     var jsonResponse = jsonDecode(response.body);
 
     items = jsonResponse['success'];
-    // print("below is response body");
-    // print(jsonResponse);
-    // print("below is items body");
-    // print(items);
 
     setState(() {
       isLoading = false; // Set isLoading to false after getting the response
@@ -93,19 +86,19 @@ class _user_profileState extends State<user_profile> {
                                 width: 4,
                               ),
                             ),
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               child: Icon(Icons.person, size: 150),
                               backgroundColor: Colors.grey,
                               radius: 100,
                             ),
                           )),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               if (items != null && items!.isNotEmpty)
                 Text(
                   '${items![0]['firstName']} ' + '${items![0]['lastName']}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                   ),
                 ),
@@ -121,7 +114,7 @@ class _user_profileState extends State<user_profile> {
                   child: RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'First Name: ',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -132,7 +125,7 @@ class _user_profileState extends State<user_profile> {
                         ),
                         TextSpan(
                           text: items![0]['firstName'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
@@ -154,7 +147,7 @@ class _user_profileState extends State<user_profile> {
                   child: RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Last Name: ',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -165,7 +158,7 @@ class _user_profileState extends State<user_profile> {
                         ),
                         TextSpan(
                           text: items![0]['lastName'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
@@ -187,7 +180,7 @@ class _user_profileState extends State<user_profile> {
                   child: RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Email : ',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -198,7 +191,7 @@ class _user_profileState extends State<user_profile> {
                         ),
                         TextSpan(
                           text: items![0]['email'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
@@ -221,7 +214,7 @@ class _user_profileState extends State<user_profile> {
                   child: RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Registered on : ',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -233,7 +226,7 @@ class _user_profileState extends State<user_profile> {
                         TextSpan(
                           text: DateFormat('yyyy-MM-dd HH:mm:ss').format(
                               DateTime.parse(items![0]['createdAt']).toLocal()),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             // Ensure the text color is set, as TextSpan doesn't inherit color from RichText
@@ -245,7 +238,7 @@ class _user_profileState extends State<user_profile> {
                 ),
               SizedBox(height: 20),
               if (isLoading)
-                Center(
+                const Center(
                   // Show loading indicator if isLoading is true
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),

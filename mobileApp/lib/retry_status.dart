@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:road_safe_app/dashboard.dart';
 import 'package:road_safe_app/utils/app_drawer.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class retry extends StatefulWidget {
@@ -37,7 +36,7 @@ class _retryState extends State<retry> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "There is issue in raising your complaint please, Retry it!",
                 style: TextStyle(
                   fontSize: 20,

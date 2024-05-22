@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:road_safe_app/dashboard.dart';
 import 'package:road_safe_app/utils/app_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,7 +34,7 @@ class _complaint_statusState extends State<complaint_status> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Your Complaint has been raised Successfully!",
                 style: TextStyle(
                   fontSize: 20,

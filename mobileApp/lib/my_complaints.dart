@@ -28,11 +28,7 @@ class _my_complaintState extends State<my_complaint> {
 
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
     email = jwtDecodedToken['email'];
-    // print("my_complaints");
-    // print(email);
     Uid = jwtDecodedToken['_id'];
-    // print("my_complaints");
-    // print(Uid);
     getComplaintDetails(email);
   }
 
@@ -49,15 +45,7 @@ class _my_complaintState extends State<my_complaint> {
     var jsonResponse = jsonDecode(response.body);
 
     items = jsonResponse['success'];
-    // print("below is response body");
-    // print(jsonResponse);
-    // print("below is items body");
-    // print(items);
-
     cnt = jsonResponse['count'];
-    // print("below is cnt body");
-    // print(cnt);
-    // print(cnt![0]);
 
     setState(() {
       isLoading = false; // Set isLoading to false after getting the response
@@ -72,8 +60,6 @@ class _my_complaintState extends State<my_complaint> {
         body: jsonEncode(reqBody));
 
     var jsonResponse = jsonDecode(response.body);
-
-    // print(jsonResponse);
 
     if (jsonResponse['status']) {
       getComplaintDetails(email);
@@ -114,7 +100,7 @@ class _my_complaintState extends State<my_complaint> {
             Expanded(
               child: Container(
                 child: isLoading
-                    ? Center(
+                    ? const Center(
                         // Show loading indicator if isLoading is true
                         child: CircularProgressIndicator(
                           valueColor:
@@ -151,15 +137,13 @@ class _my_complaintState extends State<my_complaint> {
                                       child: ListTile(
                                         // leading: Icon(Icons.task),
                                         title: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                              8.0), // Set the border radius to 8
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                           child: Image.memory(
-                                            base64Decode(items![index][
-                                                'image']), // Convert base64 string to bytes
-                                            width:
-                                                50, // Set width according to your preference
-                                            height:
-                                                150, // Set height according to your preference
+                                            base64Decode(
+                                                items![index]['image']),
+                                            width: 50,
+                                            height: 150,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -170,7 +154,7 @@ class _my_complaintState extends State<my_complaint> {
                                             RichText(
                                               text: TextSpan(
                                                 text: 'Complaint Id : ',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight
                                                       .bold, // Make the "Email :" text bold
                                                   fontSize:
@@ -181,7 +165,7 @@ class _my_complaintState extends State<my_complaint> {
                                                   TextSpan(
                                                     text:
                                                         '${items![index]['_id']}',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontWeight: FontWeight
                                                           .normal, // Keep the email text normal
                                                       fontSize:

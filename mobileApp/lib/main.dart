@@ -11,7 +11,6 @@ void main() async {
     prefs = await SharedPreferences.getInstance();
     token = prefs.getString('token');
   } catch (e) {
-    // Handle error when retrieving token
     print('Error retrieving token: $e');
   }
 

@@ -96,13 +96,10 @@ class _SignUpState extends State<SignUp> {
 
       var jsonResponse = jsonDecode(response.body);
 
-      // print(jsonResponse['status']);
-
       if (jsonResponse['status']) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignInPage()));
       } else {
-        // print("Something went wrong!!!");
         isLoading = false;
       }
     } else {
@@ -162,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                     height: 200,
                                   ),
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.image,
                                   size: 100,
                                   color: Color.fromARGB(255, 73, 72, 72),
@@ -224,7 +221,7 @@ class _SignUpState extends State<SignUp> {
                       child: TextFormField(
                         controller: firstNameController,
                         keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             hintText: 'First Name',
@@ -245,7 +242,7 @@ class _SignUpState extends State<SignUp> {
                       child: TextFormField(
                         controller: lastNameController,
                         keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             hintText: 'Last Name',
@@ -277,9 +274,9 @@ class _SignUpState extends State<SignUp> {
                             hintText: 'Email',
                             isCollapsed:
                                 true, // Reduces the height of the input field
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15.0, horizontal: 15.0),
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
                       ),
@@ -304,9 +301,9 @@ class _SignUpState extends State<SignUp> {
                             hintText: 'Password',
                             isCollapsed:
                                 true, // Reduces the height of the input field
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15.0, horizontal: 15.0),
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
                       ),
@@ -319,7 +316,7 @@ class _SignUpState extends State<SignUp> {
                         child: ElevatedButton(
                           onPressed: isLoading ? null : registerUser,
                           child: isLoading
-                              ? SizedBox(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(

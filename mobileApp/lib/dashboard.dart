@@ -41,9 +41,6 @@ class _DashboardState extends State<Dashboard> {
     Uint8List imageData = await readImageFile(selectedImage!.path);
     Uint8List compressedImageData = await compressImage(imageData, 50);
     base64String = imageToBase64(compressedImageData);
-
-    // image controller
-    // print(base64String);
   }
 
   Future pickImageFromCamera() async {
@@ -52,10 +49,6 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       selectedImage = io.File(returnedImage!.path);
     });
-
-    // image controller
-    // print(selectedImage);
-    //
   }
 
   Future<Uint8List> readImageFile(String filePath) async {
@@ -140,14 +133,11 @@ class _DashboardState extends State<Dashboard> {
         final data = json.decode(response.body);
         setState(() {
           address = data['display_name'];
-          // print(address);
         });
       } else {
-        // Handle error
         print("Error is 1 - location: ${response.statusCode}");
       }
     } catch (e) {
-      // Handle network or other errors
       print("Error is 2 - location : $e");
     }
   }
@@ -181,9 +171,7 @@ class _DashboardState extends State<Dashboard> {
 
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
     email = jwtDecodedToken['email'];
-    // print(email);
     Uid = jwtDecodedToken['_id'];
-    // print(Uid);
   }
 
   Future loadModel() async {
@@ -194,8 +182,7 @@ class _DashboardState extends State<Dashboard> {
         quantization: false,
         numThreads: 1,
         useGpu: false);
-
-    // print('model loaded');
+    print('model loaded');
   }
 
 //  Uint8List byte = selectedImage.readAsBytes();
@@ -207,11 +194,6 @@ class _DashboardState extends State<Dashboard> {
     final image = await decodeImageFromList(byte);
     imageHeight = image.height;
     imageWidth = image.width;
-
-    // print(byte);
-
-    // print(imageHeight);
-    // print(imageWidth);
 
     result = await vision.yoloOnImage(
         bytesList: byte,
@@ -233,10 +215,6 @@ class _DashboardState extends State<Dashboard> {
         MaterialPageRoute(builder: (context) => retry()),
       );
     }
-
-    // print(result);
-    print("Verification done !");
-    // print(yoloResults);
   }
 
   void raiseComplaint_() async {
@@ -422,10 +400,6 @@ class _DashboardState extends State<Dashboard> {
                             .where((entry) => entry.value)
                             .map((entry) => entry.key)
                             .toList();
-
-                        // problem category
-                        // print('Selected Options: $selectedChips');
-                        //
                       },
                     )
                 ],
@@ -465,13 +439,11 @@ class _DashboardState extends State<Dashboard> {
                   onPressed: () {
                     if (selectedImage != null && !isLoading) {
                       setState(() {
-                        isLoading =
-                            true; // Set isLoading to true when button is pressed
+                        isLoading = true;
                       });
                       yolov8(selectedImage!).then((_) {
                         setState(() {
-                          isLoading =
-                              false; // Set isLoading to false after function execution
+                          isLoading = false;
                         });
                         // Check result and redirect accordingly
                         if (result.isNotEmpty) {
