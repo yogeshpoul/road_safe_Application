@@ -57,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     BorderRadius.circular(10.0), // Adjust the radius as needed
                 child: Image.asset(
                   'assets/images/appIcon.png',
-                  width: 200,
-                  height: 200,
+                  width: 130,
+                  height: 130,
                   fit: BoxFit
                       .cover, // Ensure the image fits within the rounded corners
                 ),
@@ -67,8 +67,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Text(
                 'RoadSafe',
                 style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
               ),
