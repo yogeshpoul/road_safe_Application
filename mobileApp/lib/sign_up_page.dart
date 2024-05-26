@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:road_safe_app/sign_in_page.dart';
 import 'dart:convert';
@@ -29,7 +28,7 @@ class _SignUpState extends State<SignUp> {
   late String img64;
   String? base64String;
   late List<String> parts;
-  late String type="";
+  late String type = "";
   late Uint8List imageData;
 
   Future pickImageFromGallery() async {
@@ -42,9 +41,8 @@ class _SignUpState extends State<SignUp> {
     imageData = await readImageFile(selectedImage!.path);
     String selectedImg = selectedImage.toString();
     parts = selectedImg.split('.');
-    String extension = parts[parts.length - 1];
-    type = extension[0] + extension[1] + extension[2];
-    print(type);
+    String extension_ = parts[parts.length - 1];
+    type = extension_[0] + extension_[1] + extension_[2];
   }
 
   Future pickImageFromCamera() async {
@@ -56,9 +54,8 @@ class _SignUpState extends State<SignUp> {
     imageData = await readImageFile(selectedImage!.path);
     String selectedImg = selectedImage.toString();
     parts = selectedImg.split('.');
-    String extension = parts[parts.length - 1];
-    type = extension[0] + extension[1] + extension[2];
-    print(type);
+    String extension_ = parts[parts.length - 1];
+    type = extension_[0] + extension_[1] + extension_[2];
   }
 
   Future<Uint8List> readImageFile(String filePath) async {
@@ -66,36 +63,21 @@ class _SignUpState extends State<SignUp> {
     return await imageFile.readAsBytes();
   }
 
-  // Function to compress image
-  // Future<Uint8List> compressImage(Uint8List imageData, int quality) async {
-  //   List<int> compressedData = await FlutterImageCompress.compressWithList(
-  //     imageData,
-  //     quality: quality,
-  //   );
-  //   return Uint8List.fromList(compressedData);
-  // }
-
-  // Function to convert image to base64 string
-  String imageToBase64(Uint8List imageBytes) {
-    return base64Encode(imageBytes);
-  }
-
   late String signedUrl;
   late String photoKey = "";
 
   void uploadUserPhoto_() async {
     var reqBody = {"email": emailController.text, "type": type};
-    print(reqBody);
 
     var response = await http.post(Uri.parse(uploadUserPhoto),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(reqBody));
-    print(response.body);
+
     var jsonResponse = jsonDecode(response.body);
+
     signedUrl = jsonResponse["success"][0];
     photoKey = jsonResponse["success"][1];
-    print(signedUrl);
-    print(photoKey);
+
     uploadS3_();
     registerUser();
   }

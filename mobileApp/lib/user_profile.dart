@@ -62,8 +62,7 @@ class _user_profileState extends State<user_profile> {
               SizedBox(height: 20),
               if (items != null && items!.isNotEmpty)
                 Center(
-                    child: (
-                            items![0]['userImage'].isNotEmpty)
+                    child: (items![0]['userImage'].isNotEmpty)
                         ? Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,

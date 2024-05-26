@@ -43,8 +43,8 @@ class _DashboardState extends State<Dashboard> {
     imageData = await readImageFile(selectedImage!.path);
     String selectedImg = selectedImage.toString();
     parts = selectedImg.split('.');
-    String extension = parts[parts.length - 1];
-    type = extension[0] + extension[1] + extension[2];
+    String extension_ = parts[parts.length - 1];
+    type = extension_[0] + extension_[1] + extension_[2];
   }
 
   Future pickImageFromCamera() async {
@@ -57,27 +57,13 @@ class _DashboardState extends State<Dashboard> {
     imageData = await readImageFile(selectedImage!.path);
     String selectedImg = selectedImage.toString();
     parts = selectedImg.split('.');
-    String extension = parts[parts.length - 1];
-    type = extension[0] + extension[1] + extension[2];
+    String extension_ = parts[parts.length - 1];
+    type = extension_[0] + extension_[1] + extension_[2];
   }
 
   Future<Uint8List> readImageFile(String filePath) async {
     io.File imageFile = io.File(filePath);
     return await imageFile.readAsBytes();
-  }
-
-  // Function to compress image
-  // Future<Uint8List> compressImage(Uint8List imageData, int quality) async {
-  //   List<int> compressedData = await FlutterImageCompress.compressWithList(
-  //     imageData,
-  //     quality: quality,
-  //   );
-  //   return Uint8List.fromList(compressedData);
-  // }
-
-// Function to convert image to base64 string
-  String imageToBase64(Uint8List imageBytes) {
-    return base64Encode(imageBytes);
   }
 
   //gettingLocation
@@ -225,24 +211,22 @@ class _DashboardState extends State<Dashboard> {
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => retry()),
+        MaterialPageRoute(builder: (context) => const retry()),
       );
     }
   }
 
   void uploadPhoto_() async {
     var reqBody = {"email": email, "type": type};
-    print(reqBody);
 
     var response = await http.post(Uri.parse(uploadPhoto),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(reqBody));
-    print(response.body);
+
     var jsonResponse = jsonDecode(response.body);
+
     signedUrl = jsonResponse["success"][0];
     photoKey = jsonResponse["success"][1];
-    print(signedUrl);
-    print(photoKey);
     uploadS3_();
     raiseComplaint_();
   }
@@ -265,7 +249,6 @@ class _DashboardState extends State<Dashboard> {
     var response = await http.post(Uri.parse(complaintDetails),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(reqBody));
-    print(response.body);
   }
 
   @override
@@ -277,7 +260,7 @@ class _DashboardState extends State<Dashboard> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(6.0),
+          padding: const EdgeInsets.all(6.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,11 +361,11 @@ class _DashboardState extends State<Dashboard> {
               if (isLoadingLocation)
                 Transform.translate(
                   offset: const Offset(4.0, 0.0), // Move 4 pixels to the right
-                  child: SizedBox(
+                  child: const SizedBox(
                     width: 25,
                     height: 25,
                     child: Padding(
-                      padding: const EdgeInsets.all(3.0),
+                      padding: EdgeInsets.all(3.0),
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
                         strokeWidth: 3.0, // Reduce the thickness
@@ -464,7 +447,7 @@ class _DashboardState extends State<Dashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Raise Complaint',
                     style: TextStyle(
                       fontSize: 20,
@@ -480,19 +463,6 @@ class _DashboardState extends State<Dashboard> {
                         setState(() {
                           isLoading = false;
                         });
-                        // Check result and redirect accordingly
-                        // if (result.isNotEmpty) {
-                        //   Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => complaint_status()),
-                        //   );
-                        // } else {
-                        //   Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(builder: (context) => retry()),
-                        //   );
-                        // }
                       });
                     }
                   },
@@ -502,7 +472,7 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 10),
 
               if (isLoading) // Show loading indicator if isLoading is true
-                Center(
+                const Center(
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
                   ),
